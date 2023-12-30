@@ -1,1 +1,4 @@
 123@11;123;123
+sandra@admin;sandra;123
+nuno@admin;nuno;456
+ken@admin;nuno;789

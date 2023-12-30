@@ -166,6 +166,11 @@ def login(email,password):
         """
         Ciclo for que percorre TODAS as linhas de informação presentes na variável conteudo
         """
+        #ADMINS
+        if email == 'sandra@admin' and password == '123' or email =='nuno@admin' and password == '456' or email == 'ken@admin' and password == '789':
+            messagebox.showinfo('Sucess!','Welcome admin! :)')
+            return
+
         verificar_email = linhas[0:linhas.find(';')] #Esta variável vai buscar o email presente em cada linha na variável 'conteudo'
         verificar_pass = linhas[(linhas.rfind(';') + 1):-1] #Esta variável vai buscar a password presente em cada linha na variável 'conteudo'
 

@@ -2,3 +2,5 @@
 sandra@admin;sandra;123
 nuno@admin;nuno;456
 ken@admin;ken;789
+teste@teste123;ola123;pass
+teste2@esta_a_dar;achoquesim;check

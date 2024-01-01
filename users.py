@@ -37,12 +37,12 @@ def create_sign_up_frame(window, main_frame):
     password = StringVar()
     password.set('')
     password_label = Label(sign_up_frame, text = 'Password:', font = ('Roboto', 12), bg = '#9b42f5').place(x = 307, y = 350)
-    password_entry = Entry(sign_up_frame, width = 25, font = ('Roboto', 12), textvariable = password).place( x = 400, y = 350)
+    password_entry = Entry(sign_up_frame, width = 25, font = ('Roboto', 12), textvariable = password, show ='*').place( x = 400, y = 350)
 
     confirm_password = StringVar()
     confirm_password.set('')
     confirm_password_label = Label(sign_up_frame, text = 'Confirmar Password:', font = ('Roboto', 12), bg = '#9b42f5').place(x = 230, y = 400)
-    confirm_password_entry = Entry(sign_up_frame, width = 25, font = ('Roboto', 12), textvariable = confirm_password).place( x = 400, y = 400)
+    confirm_password_entry = Entry(sign_up_frame, width = 25, font = ('Roboto', 12), textvariable = confirm_password, show ='*').place( x = 400, y = 400)
 
     #Botão para criar conta
     create_account_button = Button(sign_up_frame, text = 'Create Account', font = ('Roboto', 20), bg = '#333', fg = 'white', bd = 0, command = lambda: create_account(email,username,password,confirm_password,main_frame,sign_up_frame)).place(x = 630, y = 450)
@@ -124,36 +124,36 @@ def create_login_frame(window, main_frame):
 
     login_message = Label(login_frame, text = 'Login', font = ('Roboto', 55), bg = '#6030d1').place(x = 400, y = 150)
 
-    email = StringVar() #Variável do email que o utilizador inserir (mais tarde para criar conta)
-    email.set('')
-    email_label = Label(login_frame, text = 'Email:', font = ('Roboto', 12), bg = '#6030d1').place(x = 338, y = 300)
-    email_entry = Entry(login_frame, width = 25, font = ('Roboto', 12), textvariable = email).place(x = 400, y = 300)
+    username = StringVar() #Variável do username que o utilizador inserir para fazer login
+    username.set('')
+    username_label = Label(login_frame, text = 'Username:', font = ('Roboto', 12), bg = '#6030d1').place(x = 305, y = 300)
+    username_entry = Entry(login_frame, width = 25, font = ('Roboto', 12), textvariable = username).place(x = 400, y = 300)
     
     password = StringVar()
     password.set('')
     password_label = Label(login_frame, text = 'Password:', font = ('Roboto', 12), bg = '#6030d1').place(x = 307, y = 350)
-    password_entry = Entry(login_frame, width = 25, font = ('Roboto', 12), textvariable = password).place( x = 400, y = 350)
+    password_entry = Entry(login_frame, width = 25, font = ('Roboto', 12), textvariable = password, show ='*').place( x = 400, y = 350)
 
 
     #Botão para criar conta
-    create_account_button = Button(login_frame, text = 'Login', font = ('Roboto', 20), bg = '#333', fg = 'white', bd = 0, command = lambda: login(email,password)).place(x = 580, y = 380)    
+    create_account_button = Button(login_frame, text = 'Login', font = ('Roboto', 20), bg = '#333', fg = 'white', bd = 0, command = lambda: login(username,password)).place(x = 580, y = 380)    
 
 
     #Botão para voltar à página principal
     go_back_button = Button(login_frame, text = 'Go Back', font = ('Roboto', 20), bg = '#333', fg = 'white', bd = 0, command = lambda:go_back_login(main_frame,login_frame)).place(x = 310, y = 380)
 
     
-def login(email,password):
+def login(username,password):
     """
     Esta função junta as informações inseridas na frame de login \n
     Verifica se o username e password que o utilizador inseriu estão guardadas e corretas! \n
     Se não tiver, informa o utilizador o que está errado e/ou em falta
     """
-    email = email.get()
+    username = username.get()
     password = password.get() 
 
     #Se o utilizador não tiver inserido algum ou nenhum dos campos, mostra uma messagebox com erro
-    if email == '' or password == '':
+    if username == '' or password == '':
         messagebox.showerror('Erro','You have to fill all the spaces!')
         return #Termina-se a função
 
@@ -167,19 +167,19 @@ def login(email,password):
         Ciclo for que percorre TODAS as linhas de informação presentes na variável conteudo
         """
         #ADMINS
-        if email == 'sandra@admin' and password == '123' or email =='nuno@admin' and password == '456' or email == 'ken@admin' and password == '789':
+        if username == 'sandra' and password == '123' or username =='nuno' and password == '456' or username == 'ken' and password == '789':
             messagebox.showinfo('Sucess!','Welcome admin! :)')
             return
 
-        verificar_email = linhas[0:linhas.find(';')] #Esta variável vai buscar o email presente em cada linha na variável 'conteudo'
+        verificar_username = linhas[linhas.find(';') + 1:linhas.rfind(';')] #Esta variável vai buscar o username presente em cada linha na variável 'conteudo'
         verificar_pass = linhas[(linhas.rfind(';') + 1):-1] #Esta variável vai buscar a password presente em cada linha na variável 'conteudo'
 
             #Se o username E password estiverem corretas, mostra-se uma messagebox a informar o utilizador que foi feito login com sucesso!
-        if email == verificar_email and password == verificar_pass:
+        if username == verificar_username and password == verificar_pass:
             messagebox.showinfo('Done!','You have sucessfully loged into the myPhotos! :)\n ')
             return
         
     #Se depois de ter percorrido a variável 'conteudo' toda e não ter-se encontrado as informações da conta:
     #Mostra-se uma messagebox de erro a informar o utilizador o ocorrido!
-    if verificar_email != email or verificar_pass != password:
+    if verificar_username != username or verificar_pass != password:
         messagebox.showerror('Error','The data you inserted in incorrect, try again!')

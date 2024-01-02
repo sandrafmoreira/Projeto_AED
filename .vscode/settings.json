@@ -1,0 +1,5 @@
+{
+          "editor.minimap.maxColumn": 150,
+          "editor.minimap.side": "right",
+          "diffEditor.hideUnchangedRegions.minimumLineCount": 5
+}

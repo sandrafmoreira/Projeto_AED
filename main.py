@@ -5,32 +5,31 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 from users import create_sign_up_frame,create_login_frame #Para importar as funções do ficheiro users.py
 
+
 #--------CONFIGURAÇÕES DE JANELA------------------------------------
 window = Tk() #Chama a função Tkinter e cria uma janela
 window.geometry('1000x600') #Altera largura e altura da janela
 window.title('myPhotos')
-window.resizable(0,0) #Paara não se poder redimensionar a janela (para os widgets não saírem do sítio)
+window.resizable(0,0) #Para não se poder redimensionar a janela (para os widgets não saírem do sítio)
 window.configure(bg = 'lightgrey')
 
 
 # ------------PÁGINA INICIAL--------------------------
+main_background_image = Image.open('..\\Projeto_AED\\images\\backgrounds\\main_background.jpg').resize((1000, 600))
+image = ImageTk.PhotoImage(main_background_image)
+main_frame = Label(image=image)
+main_frame.image = image
+main_frame.place(x = 0, y = 0)
 
-#Frame da janela inicial
-main_frame = Frame(window, width = 1000, height = 600, bg = '#333')
-main_frame.place(x = 0, y = 0) #Estao em duas linhas separadas, pois dá erro ao chamar as funções :/
 
-
-#Mensagem de bem-vinda
-welcome_message_label = Label(main_frame, text = 'Welcome to \nmyPhotos!', font = ('Roboto', 55), bg = '#333', fg = 'white').place(x = 300, y = 150)
-
+#Mensagem de bem-vindo
+welcome_message_label = Label(main_frame, text = 'Welcome to \nmyPhotos!', bg = '#384361', font = ('Roboto', 55), fg = 'white').place(x = 300, y = 150)
 
 #Botão para passar para o frame para criar uma conta!
-sign_up_button = Button(main_frame, text = 'Sign Up', bg = '#333', border = '0', fg = 'white', font = ('Roboto', 25), command = lambda: create_sign_up_frame(window, main_frame)).place(x = 300, y = 350)
-
+sign_up_button = Button(main_frame, text = 'Sign Up', border = '0',bg = '#384361', fg = 'white', font = ('Roboto', 25), command = lambda: create_sign_up_frame(main_frame)).place(x = 325, y = 350)
 
 #Botão para passar para o frame para fazer login!
-login_button = Button(main_frame, text = 'Login', bg = '#333', border = '0', fg = 'white', font = ('Roboto', 25), command = lambda: create_login_frame(window, main_frame)).place(x = 550, y = 350)
-
+login_button = Button(main_frame, text = 'Login', border = '0',bg = '#384361', fg = 'white', font = ('Roboto', 25), command = lambda: create_login_frame(window, main_frame)).place(x = 575, y = 350)
 
 #--------------------
 

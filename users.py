@@ -1,7 +1,8 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
-
+from PIL import Image, ImageTk
+from homepage import homepage_window #Para importar a função homepage_window (função que cria a janela homepage) que está no ficheiro homepage.py
 
 #----------------------------------SIGN UP-----------------------------------------------------------
 
@@ -13,42 +14,45 @@ def go_back_sign_up(main_frame,sign_up_frame):
     main_frame.place(x = 0, y = 0)
 
 
-def create_sign_up_frame(window, main_frame):
+def create_sign_up_frame( main_frame):
     """
     Função para mostrar o frame para o utilizador Criar Conta
     Neste frame, o utilizador cria uma conta com um nome de utilizador, o seu email, e a password
     """
     main_frame.place_forget()
-    sign_up_frame = Frame(window, width = 1000, height = 600, bg = '#9b42f5')
+    sign_up_background_image = Image.open('..\\Projeto_AED\\images\\backgrounds\\sign_up_background.jpg').resize((1000,600))
+    image = ImageTk.PhotoImage(sign_up_background_image)
+    sign_up_frame = Label(image=image)
+    sign_up_frame.image = image
     sign_up_frame.place(x = 0, y = 0)
 
-    sign_up_message = Label(sign_up_frame, text = 'Sign Up', font = ('Roboto', 55), bg = '#9b42f5').place(x = 380, y = 80)
+    sign_up_message = Label(sign_up_frame, text = 'Sign Up', font = ('Roboto', 55), bg = '#017BC9').place(x = 380, y = 80)
 
     email = StringVar()
     email.set('')
-    email_label = Label(sign_up_frame, text = 'Email:', font = ('Roboto', 12), bg = '#9b42f5').place(x = 340, y = 250)
+    email_label = Label(sign_up_frame, text = 'Email:', font = ('Roboto', 12), bg = '#14468C').place(x = 340, y = 250)
     email_entry = Entry(sign_up_frame, width = 25, font = ('Roboto', 12), textvariable = email).place(x = 400, y = 250)
 
     username = StringVar() #Variável do username que o utilizador inserir (mais tarde para criar conta)
     username.set('')
-    username_label = Label(sign_up_frame, text = 'Username: ', font = ('Roboto', 12), bg = '#9b42f5').place(x = 307, y = 300)
+    username_label = Label(sign_up_frame, text = 'Username: ', font = ('Roboto', 12), bg = '#4F1174').place(x = 307, y = 300)
     username_entry = Entry(sign_up_frame, width = 25, font = ('Roboto', 12), textvariable = username).place(x = 400, y = 300)
 
     password = StringVar()
     password.set('')
-    password_label = Label(sign_up_frame, text = 'Password:', font = ('Roboto', 12), bg = '#9b42f5').place(x = 307, y = 350)
+    password_label = Label(sign_up_frame, text = 'Password:', font = ('Roboto', 12), bg = '#150233').place(x = 307, y = 350)
     password_entry = Entry(sign_up_frame, width = 25, font = ('Roboto', 12), textvariable = password, show ='*').place( x = 400, y = 350)
 
     confirm_password = StringVar()
     confirm_password.set('')
-    confirm_password_label = Label(sign_up_frame, text = 'Confirmar Password:', font = ('Roboto', 12), bg = '#9b42f5').place(x = 230, y = 400)
+    confirm_password_label = Label(sign_up_frame, text = 'Confirmar Password:', font = ('Roboto', 12), bg = '#020031').place(x = 230, y = 400)
     confirm_password_entry = Entry(sign_up_frame, width = 25, font = ('Roboto', 12), textvariable = confirm_password, show ='*').place( x = 400, y = 400)
 
     #Botão para criar conta
-    create_account_button = Button(sign_up_frame, text = 'Create Account', font = ('Roboto', 20), bg = '#333', fg = 'white', bd = 0, command = lambda: create_account(email,username,password,confirm_password,main_frame,sign_up_frame)).place(x = 630, y = 450)
+    create_account_button = Button(sign_up_frame, text = 'Create Account', font = ('Roboto', 20), bg = '#020031', fg = 'white', bd = 2, command = lambda: create_account(email,username,password,confirm_password,main_frame,sign_up_frame)).place(x = 630, y = 450)
 
     #Botão para voltar à página principal
-    go_back_button = Button(sign_up_frame, text = 'Go Back', font = ('Roboto', 20), bg = '#333', fg = 'white', bd = 0, command = lambda:go_back_sign_up(main_frame,sign_up_frame)).place(x = 280, y = 450)
+    go_back_button = Button(sign_up_frame, text = 'Go Back', font = ('Roboto', 20), bg = '#020031', fg = 'white', bd = 2, command = lambda:go_back_sign_up(main_frame,sign_up_frame)).place(x = 280, y = 450)
 
 
 def create_account(email,username,password,confirm_password,main_frame,sign_up_frame):
@@ -76,7 +80,7 @@ def create_account(email,username,password,confirm_password,main_frame,sign_up_f
         return #A função termina
     
      #Abre-se o ficheiro onde estão presentes as informações dos utilizadores em modo leitura para verificar se o username que o utilizador inseriu já está presente no ficheiro
-    f = open('..\\Projeto_AED-1\\files\\users.txt','r')
+    f = open('..\\Projeto_AED\\files\\users.txt','r')
     conteudo = f.readlines() #Lê todo o conteudo presente no ficheiro 'users.txt'
     f.close() #Fecha o ficheiro
 
@@ -99,7 +103,7 @@ def create_account(email,username,password,confirm_password,main_frame,sign_up_f
     conteudo = email + ';' + username + ';' + password #A variável conteudo guarda o username, o email, e a password inseridos para depois inserir no ficheiro 
 
     #Abre o ficheiro 'utilizadores.txt' em modo append
-    f = open('..\\Projeto_AED-1\\files\\users.txt','a')
+    f = open('..\\Projeto_AED\\files\\users.txt','a')
     f.write(conteudo + '\n') #Escreve o que está guardado na variável conteudo 
     f.close() #Fecha o ficheiro
 
@@ -119,31 +123,34 @@ def go_back_login(main_frame,login_frame):
 
 def create_login_frame(window, main_frame):
     main_frame.place_forget()
-    login_frame = Frame(window, width = 1000, height = 600, bg = '#6030d1')
+    login_background_image = Image.open('..\\Projeto_AED\\images\\backgrounds\\login_background.jpg').resize((1000,600))
+    image = ImageTk.PhotoImage(login_background_image)
+    login_frame = Label(image=image)
+    login_frame.image = image
     login_frame.place(x = 0, y = 0)
 
-    login_message = Label(login_frame, text = 'Login', font = ('Roboto', 55), bg = '#6030d1').place(x = 400, y = 150)
+    login_message = Label(login_frame, text = 'Login', font = ('Roboto', 55), bg = '#D26B58').place(x = 400, y = 150)
 
     username = StringVar() #Variável do username que o utilizador inserir para fazer login
     username.set('')
-    username_label = Label(login_frame, text = 'Username:', font = ('Roboto', 12), bg = '#6030d1').place(x = 305, y = 300)
+    username_label = Label(login_frame, text = 'Username:', font = ('Roboto', 12), bg = '#652F47').place(x = 305, y = 300)
     username_entry = Entry(login_frame, width = 25, font = ('Roboto', 12), textvariable = username).place(x = 400, y = 300)
     
     password = StringVar()
     password.set('')
-    password_label = Label(login_frame, text = 'Password:', font = ('Roboto', 12), bg = '#6030d1').place(x = 307, y = 350)
+    password_label = Label(login_frame, text = 'Password:', font = ('Roboto', 12), bg = '#582E46').place(x = 307, y = 350)
     password_entry = Entry(login_frame, width = 25, font = ('Roboto', 12), textvariable = password, show ='*').place( x = 400, y = 350)
 
 
     #Botão para criar conta
-    create_account_button = Button(login_frame, text = 'Login', font = ('Roboto', 20), bg = '#333', fg = 'white', bd = 0, command = lambda: login(username,password)).place(x = 580, y = 380)    
+    login_button = Button(login_frame, text = 'Login', font = ('Roboto', 20), bg = '#3F2B47', fg = 'white', bd = 2, command = lambda: login(username,password,login_frame,window)).place(x = 580, y = 380)    
 
 
     #Botão para voltar à página principal
-    go_back_button = Button(login_frame, text = 'Go Back', font = ('Roboto', 20), bg = '#333', fg = 'white', bd = 0, command = lambda:go_back_login(main_frame,login_frame)).place(x = 310, y = 380)
+    go_back_button = Button(login_frame, text = 'Go Back', font = ('Roboto', 20), bg = '#3F2B47', fg = 'white', bd = 2, command = lambda:go_back_login(main_frame,login_frame)).place(x = 310, y = 380)
 
     
-def login(username,password):
+def login(username,password,login_frame,window):
     """
     Esta função junta as informações inseridas na frame de login \n
     Verifica se o username e password que o utilizador inseriu estão guardadas e corretas! \n
@@ -158,7 +165,7 @@ def login(username,password):
         return #Termina-se a função
 
     #Abre-se o ficheiro 'users.txt' em modo leitura
-    f = open('..\\Projeto_AED-1\\files\\users.txt','r')
+    f = open('..\\Projeto_AED\\files\\users.txt','r')
     conteudo = f.readlines() #A variável 'conteudo' vai buscar toda a informação escrita no ficheiro
     f.close() #Fechar o ficheiro
 
@@ -169,6 +176,8 @@ def login(username,password):
         #ADMINS
         if username == 'sandra' and password == '123' or username =='nuno' and password == '456' or username == 'ken' and password == '789':
             messagebox.showinfo('Sucess!','Welcome admin! :)')
+            login_frame.place_forget()
+            homepage_window(window)
             return
 
         verificar_username = linhas[linhas.find(';') + 1:linhas.rfind(';')] #Esta variável vai buscar o username presente em cada linha na variável 'conteudo'
@@ -177,6 +186,8 @@ def login(username,password):
             #Se o username E password estiverem corretas, mostra-se uma messagebox a informar o utilizador que foi feito login com sucesso!
         if username == verificar_username and password == verificar_pass:
             messagebox.showinfo('Done!','You have sucessfully loged into the myPhotos! :)\n ')
+            login_frame.place_forget()
+            homepage_window(window)
             return
         
     #Se depois de ter percorrido a variável 'conteudo' toda e não ter-se encontrado as informações da conta:

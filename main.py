@@ -4,6 +4,7 @@ import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
 from users import Sign_Up, Login #Para importar as classes do ficheiro users.py para poder importar todas as suas funções
+from users import create_sign_up_frame,create_login_frame #Para importar as funções do ficheiro users.py
 
 # ------------PÁGINA INICIAL--------------------------
 class App():

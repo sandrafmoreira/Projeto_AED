@@ -1,0 +1,1 @@
+#Ficheiro que vai ter tudo relacionado com adicionar conteudo (Criar um album // Postar uma foto)

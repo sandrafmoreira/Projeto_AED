@@ -3,100 +3,73 @@ from tkinter import ttk
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
-from users import create_sign_up_frame,create_login_frame #Para importar as funções do ficheiro users.py
+from users import Sign_Up, Login #Para importar as classes do ficheiro users.py para poder importar todas as suas funções
 
+# ------------PÁGINA INICIAL--------------------------
+class App():
+    def __init__(self, window):
+        """
+        Permite criar uma window que é um objeto da classe App
+        """
+        self.window = window
 
+#       Criar o Frame da página incial com uma imagem de fundo
+        self.main_frame = Frame(self.window, width = 1000, height = 600, bg = '#333333')
+        self.main_frame.place(x = 0, y = 0)
+
+#       Mensagem de bem-vindo
+        self.welcome_message_label = Label(self.window, text = 'Welcome to \nmyPhotos!', bg = '#333333', font = ('Roboto', 55), fg = 'white').place(x = 300, y = 150)
+
+#       Botão para passar para o frame para criar uma conta!
+        self.sign_up_button = Button(self.window, text = 'Sign Up', bd = '4',bg = '#333333', fg = 'white', font = ('Roboto', 25), relief = 'raised', command = self.go_to_sign_up).place(x = 325, y = 350)
+
+#       Botão para passar para o frame para fazer login!
+        self.login_button = Button(self.window, text = 'Login', bd = '4',bg = '#333333', fg = 'white', font = ('Roboto', 25), relief = 'raised', command = self.go_to_login).place(x = 575, y = 350)
+
+#       Botão com um icon para o utilizador sair da app
+        icon = Image.open('..\\Projeto_AED\\images\\icons\\logout_icon.png').resize((80,80))
+        icon = ImageTk.PhotoImage(icon)
+        self.leave_app_btn = Button(self.window, image = icon, bd = 0, bg='#333333', command = self.leave_app)
+        self.leave_app_btn.image = icon
+        self.leave_app_btn.place( x = 920, y = 520)
+
+    def go_to_sign_up(self):
+        """
+        Esta função leva o utilizador á página para criar uma conta
+        """
+        Sign_Up(self.window)
+
+    def go_to_login(self):
+        """
+        Esta função leva o utilizador á página para fazer login e acessar a app
+        """
+        Login(self.window)
+
+    def leave_app(self):
+        """
+        Esta função pergunta ao utilizador se deseja sair da app 
+        """
+        answer = messagebox.askquestion('Leave the App', 'Do you wish to leave the app?')    
+        if answer == 'yes':
+           exit()
+
+        
 #--------CONFIGURAÇÕES DE JANELA------------------------------------
 window = Tk() #Chama a função Tkinter e cria uma janela
-window.geometry('1000x600') #Altera largura e altura da janela
+window.geometry('1000x600+100-100') #Altera largura e altura da janela e posiciona a janela +/- no centro do ecrã
 window.title('myPhotos')
 window.resizable(0,0) #Para não se poder redimensionar a janela (para os widgets não saírem do sítio)
 window.configure(bg = 'lightgrey')
 
-
-# ------------PÁGINA INICIAL--------------------------
-main_background_image = Image.open('..\\Projeto_AED\\images\\backgrounds\\main_background.jpg').resize((1000, 600))
-image = ImageTk.PhotoImage(main_background_image)
-main_frame = Label(image=image)
-main_frame.image = image
-main_frame.place(x = 0, y = 0)
-
-
-#Mensagem de bem-vindo
-welcome_message_label = Label(main_frame, text = 'Welcome to \nmyPhotos!', bg = '#384361', font = ('Roboto', 55), fg = 'white').place(x = 300, y = 150)
-
-#Botão para passar para o frame para criar uma conta!
-sign_up_button = Button(main_frame, text = 'Sign Up', border = '0',bg = '#384361', fg = 'white', font = ('Roboto', 25), command = lambda: create_sign_up_frame(main_frame)).place(x = 325, y = 350)
-
-#Botão para passar para o frame para fazer login!
-login_button = Button(main_frame, text = 'Login', border = '0',bg = '#384361', fg = 'white', font = ('Roboto', 25), command = lambda: create_login_frame(window, main_frame)).place(x = 575, y = 350)
-
-#--------------------
+App(window)
 
 window.mainloop()
 
+
 #RASCUNHOS!!
-
-#Diretoria da imagem
-# image = Image.open('')
-
-# main_background_image = ImageTk.PhotoImage(image, width = 950, height = 550)
-# label_image = Label(main_frame, image = main_background_image).place(x = 0, y = 0) #Para inserir a imagem com .place()
-
-
-# frame_login= Frame(window, width=1000, height=600, bg='#333')
-# frame_login.pack()
-
-# lbl_title= Label(frame_login, text='MyFotos', bg='#333', fg='lightblue', font=('Roboto', 70)).pack(padx='40',pady='40')
-
-# list_credentials = [ ['sandra', '123'], ['nuno', '456'], ['ken', '789'] ]
-
-# app_admin_frame = None
-# app_user_frame = None
-
-# def login():
-#     global app_admin_frame
-#     global app_user_frame
-#     global admin
-#     global user
-#     username = username_entry.get()
-#     password = password_entry.get()
-#     for i in list_credentials:
-#         if i[0] == username and i[1] == password:
-#             lbl_status['text'] ='Login successful'
-#             frame_login.pack_forget() #para esconder a frame login sem a destruir, para ela aparecer outra vez temos que usar .pack()    
-#             if (username=='sandra' and password=='123') or (username=='nuno' and password=='456') or (username=='ken' and password=='789'):
-#                 admin = True
-#                 app_admin_frame = Frame(window, width=400, height=300, bg='pink') #criar uma frame para admins
-#                 app_admin_frame.pack()
-#             else:
-#                 user= True
-#                 app_user_frame = Frame(window, width=400, height=300, bg='purple') #criar uma frame para users normais
-#                 app_user_frame.pack()
-#             return
-#         else:
-#             lbl_status['text'] ='Invalid credentials'
-
-# def signup():
-#     username = username_entry.get()
-#     password = password_entry.get()
-#     for i in list_credentials:
-#         if i[0] == username:
-#             lbl_status['text'] = 'Account already exists'
-#             return
-#     list_credentials.append([username, password])
-#     lbl_status['text'] ='Registration successful'
-
-# username_lbl =Label(frame_login, text='Username', bg='#333', fg='white', font=('Roboto', 12)).pack(padx='10',pady='10')
-# username_entry =Entry(frame_login, bg='#333', fg='white', font=('Roboto', 12))
-# username_entry.pack(padx=10,pady=10)
-# password_lbl =Label(frame_login, text='Password', bg='#333', fg='white', font=('Roboto', 12)).pack(padx='10',pady='10')
-# password_entry =Entry(frame_login, show='*', bg='#333', fg='white', font=('Roboto', 12))
-# password_entry.pack(padx=10,pady=10)
-
-# lbl_status=Label(frame_login, background='#333', fg='#fff', font=('Roboto', 10), text='')
-# lbl_status.pack()
-
-# btn_login =Button(frame_login, text='LOGIN', width=15, height=2, bg='lightblue', fg='#333', font=('Roboto', 10), command=login).pack(padx='15',pady='15')
-# btn_signup =Button(frame_login, text='SIGNUP', width=15, height=2, bg='lightblue', fg='#333', font=('Roboto', 10), command=signup).pack(padx='10',pady='10')
-
+# def removerUtilizador():
+#     """
+#     Esta função remove o utilizador selecionado na listBox!!
+#     """
+#     nome_variavel_listbox.delete(nome_variavel_listbox.curselection())
+#     

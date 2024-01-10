@@ -3,6 +3,7 @@ from tkinter import ttk
 from tkinter import messagebox
 from tkinter.ttk import Combobox
 from PIL import Image, ImageTk
+from admins import admins
 
 class Main_App:
     def __init__(self, window, username):
@@ -113,7 +114,7 @@ class Main_App:
                     self.tl_admin.title('Hello Master, what do you want to do to me?')
                     self.tl_admin.resizable(0,0) #Para não se poder redimensionar a janela (para os widgets não saírem do sítio)
                     self.tl_admin.attributes('-topmost', 'true') #Isto faz com que o top level apareça por cima, pois ele por default aparece por baixo do top level da homepage
-
+                    admins(self.tl_admin)
 
         def profile_click(self):
             """

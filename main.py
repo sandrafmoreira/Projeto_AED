@@ -4,7 +4,6 @@ import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
 from users import Sign_Up, Login #Para importar as classes do ficheiro users.py para poder importar todas as suas funções
-from users import create_sign_up_frame,create_login_frame #Para importar as funções do ficheiro users.py
 
 # ------------PÁGINA INICIAL--------------------------
 class App():
@@ -22,10 +21,10 @@ class App():
         self.welcome_message_label = Label(self.window, text = 'Welcome to \nmyPhotos!', bg = '#333333', font = ('Roboto', 55), fg = 'white').place(x = 300, y = 150)
 
 #       Botão para passar para o frame para criar uma conta!
-        self.sign_up_button = Button(self.window, text = 'Sign Up', bd = '4',bg = '#333333', fg = 'white', font = ('Roboto', 25), relief = 'raised', command = self.go_to_sign_up).place(x = 325, y = 350)
+        self.sign_up_button = Button(self.window, text = 'Sign Up',bg = 'lightblue', fg = 'white', font = ('Roboto', 25), command = self.go_to_sign_up).place(x = 325, y = 350)
 
 #       Botão para passar para o frame para fazer login!
-        self.login_button = Button(self.window, text = 'Login', bd = '4',bg = '#333333', fg = 'white', font = ('Roboto', 25), relief = 'raised', command = self.go_to_login).place(x = 575, y = 350)
+        self.login_button = Button(self.window, text = 'Login',bg = 'lightblue', fg = 'white', font = ('Roboto', 25), command = self.go_to_login).place(x = 575, y = 350)
 
 #       Botão com um icon para o utilizador sair da app
         icon = Image.open('..\\Projeto_AED\\images\\icons\\logout_icon.png').resize((80,80))

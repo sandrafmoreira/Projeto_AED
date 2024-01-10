@@ -18,7 +18,7 @@ class Sign_Up():
         self.tl.resizable(0,0) #    Para não se poder redimensionar a janela (para os widgets não saírem do sítio)
 
 #       Variável que cria a frame para a página do Sign Up
-        self.sign_up_frame = Label(self.tl, width = 1000, height = 600, bg = '#333333')
+        self.sign_up_frame = Frame(self.tl, width = 1000, height = 600, bg = '#333333')
         self.sign_up_frame.place(x = 0, y = 0)
 
 #       Label com 'Sign Up'
@@ -49,10 +49,10 @@ class Sign_Up():
         self.confirm_password_entry = Entry(self.tl, width = 25, font = ('Roboto', 12), textvariable = self.confirm_password, show ='*').place( x = 400, y = 400)
 
 #       Botão para criar conta
-        self.create_account_button = Button(self.tl, text = 'Create Account', font = ('Roboto', 20), bg = '#333333', fg = 'white', bd = 2, command = self.create_account).place(x = 630, y = 450)
+        self.create_account_button = Button(self.tl, text = 'Create Account', font = ('Roboto', 20), bg = 'lightblue', fg = 'white', command = self.create_account).place(x = 630, y = 450)
 
 #       Botão para voltar à página principal
-        self.go_back_button = Button(self.tl, text = 'Go Back', font = ('Roboto', 20), bg = '#333333', fg = 'white', bd = 2, command = self.go_back_sign_up).place(x = 280, y = 450)
+        self.go_back_button = Button(self.tl, text = 'Go Back', font = ('Roboto', 20), bg = 'lightblue', fg = 'white', command = self.go_back_sign_up).place(x = 280, y = 450)
 
     def go_back_sign_up(self):
         """
@@ -127,7 +127,7 @@ class Sign_Up():
 
 #----------------------------------LOGIN-----------------------------------------------------------
 
-class Login:
+class Login():
     def __init__(self, window):
 #       Configurações da janela nova
         self.tl = Toplevel(window)
@@ -138,7 +138,7 @@ class Login:
         self.window = window
 
 #       Cria frame para o login
-        self.login_frame = Frame(self.tl, width = 1000, height = 600, bg = 'lightgrey')
+        self.login_frame = Frame(self.tl, width = 1000, height = 600, bg = '#333333')
         self.login_frame.place(x = 0, y = 0)
 
 #       Titulo da página
@@ -157,10 +157,10 @@ class Login:
         self.password_entry = Entry(self.tl, width = 25, font = ('Roboto', 12), textvariable = self.password, show ='*').place( x = 400, y = 350)
 
 #       Botão para criar conta
-        self.login_button = Button(self.tl, text = 'Login', font = ('Roboto', 20), bg = '#3F2B47', fg = 'white', bd = 2, command = lambda: self.login(self.window)).place(x = 580, y = 380)    
+        self.login_button = Button(self.tl, text = 'Login', font = ('Roboto', 20), bg = 'lightblue', fg = 'white', command = lambda: self.login(self.window)).place(x = 580, y = 380)    
 
 #       Botão para voltar à página principal
-        self.go_back_button = Button(self.tl, text = 'Go Back', font = ('Roboto', 20), bg = '#3F2B47', fg = 'white', bd = 2, command = self.go_back_login).place(x = 310, y = 380)
+        self.go_back_button = Button(self.tl, text = 'Go Back', font = ('Roboto', 20), bg = 'lightblue', fg = 'white', command = self.go_back_login).place(x = 310, y = 380)
  
 
     def go_back_login(self):

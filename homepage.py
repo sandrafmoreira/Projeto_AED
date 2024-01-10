@@ -132,8 +132,10 @@ class Main_App:
                 self.all_notifications_btn.place(x = 75, y = 55)
 
         def logging_out(self, tl):
+            """
+            Esta função pergunta ao utilizador deseja sair da conta 
+            """
             self.tl.destroy() #A janela Top Level é destruida
-            pass
 
 
     class Homepage:

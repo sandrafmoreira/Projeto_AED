@@ -34,7 +34,7 @@ class App():
         self.leave_app_btn.place( x = 920, y = 520)
 
     def go_to_sign_up(self):
-        """
+        """N
         Esta função leva o utilizador á página para criar uma conta
         """
         Sign_Up(self.window)

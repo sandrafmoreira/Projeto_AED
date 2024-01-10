@@ -39,7 +39,7 @@ class Main_App:
 
 #           Frame onde aparece os botões de 'See Profile' e 'Log Out'
 #           Aparecem quando o utilizador clica no botão com o icone do perfil
-            self.profile_click_frame = Frame(self.homepage, width = 200, height = 90, bg = 'lightgrey')
+            self.profile_click_frame = Frame(self.homepage, width = 200, height = 135, bg = 'lightgrey')
 
 #           Frame onde aparece a notificação mais recente e um botão que vai dar á página com todas as notificações
 #           Aparecem quando o utilizador clica no botão com o icone da notificação
@@ -82,9 +82,11 @@ class Main_App:
 #           Botão em que faz com que o utilizador saia da conta com que está conectado e volte à página principal
             self.check_profile = Button(self.profile_click_frame, text = 'See Profile', font = ('Roboto', 16), bg = 'lightgrey', bd = '3', relief = 'raised', width = 10)
 
-
 #           Botão em que faz com que o utilizador saia da conta com que está conectado e volte à página principal
             self.log_out = Button(self.profile_click_frame, text = 'Log Out', font = ('Roboto', 16), bg = 'lightgrey', bd = '3', relief = 'raised', width = 10, command = lambda: self.logging_out(self.tl))
+
+#           Botão de administrador para gerir a app(abre um top level para a gerência da app)
+            self.btn_tl_admin = Button(self.profile_click_frame, text = 'Manage App', font = ('Roboto', 16), bg = 'lightgrey', bd = '3', relief = 'raised', width = 10, command = lambda:self.admin_tl(self.homepage))
 
 #           Label onde aparece a notificação mais recente
             self.latest_notification = Label(self.notifications_click_frame, text = 'Onde será inserido a notificação mais recente', bg = 'lightgrey', font = ('Roboto', 8))
@@ -102,6 +104,16 @@ class Main_App:
 #           Barra de pesquisa
 #           search = Entry(nav_bar, bg = '#E0E0E0', bd = 0, font =('Roboto', 14), width = 15).place(x = 220, y = 15)
 
+        def admin_tl(self, homepage):
+                    '''
+                    Função para criar um Top Level para aparecer a gerência da app aos admins
+                    '''        
+                    self.tl_admin = Toplevel(homepage)
+                    self.tl_admin.geometry('1000x600+100-100') #Altera largura e altura da janela e posiciona a janela +/- no centro do ecrã
+                    self.tl_admin.title('Hello Master, what do you want to do to me?')
+                    self.tl_admin.resizable(0,0) #Para não se poder redimensionar a janela (para os widgets não saírem do sítio)
+                    self.tl_admin.attributes('-topmost', 'true') #Isto faz com que o top level apareça por cima, pois ele por default aparece por baixo do top level da homepage
+
 
         def profile_click(self):
             """
@@ -112,10 +124,14 @@ class Main_App:
                 self.profile_click_frame.place_forget()
                 self.check_profile.place_forget()
                 self.log_out.place_forget()
+                self.btn_tl_admin.place_forget()
             else: # Senão
                 self.profile_click_frame.place(x = 870, y = 0)
                 self.check_profile.place(x = 0, y = 0)
                 self.log_out.place(x = 0, y = 45)
+                self.btn_tl_admin.place(x = 0, y = 90)
+        
+       
 
         def notifications_click(self):
             """

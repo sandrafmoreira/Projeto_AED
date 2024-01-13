@@ -11,3 +11,4 @@ teste3@classe;classe3;class
 teste4@classe;teste4;class
 user@123;user1;123
 teste5@123;teste5;54321
+teste_nuno@123;_teste_;teste_123

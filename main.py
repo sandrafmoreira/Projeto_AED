@@ -3,7 +3,7 @@ from tkinter import ttk
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
-from users import Sign_Up, Login #Para importar as classes do ficheiro users.py para poder importar todas as suas funções
+from users import * #Para importar as classes do ficheiro users.py para poder importar todas as suas funções
 
 # ------------PÁGINA INICIAL--------------------------
 class App():
@@ -34,7 +34,7 @@ class App():
         self.leave_app_btn.place( x = 920, y = 520)
 
     def go_to_sign_up(self):
-        """N
+        """
         Esta função leva o utilizador á página para criar uma conta
         """
         Sign_Up(self.window)
@@ -64,12 +64,3 @@ window.configure(bg = 'lightgrey')
 App(window)
 
 window.mainloop()
-
-
-#RASCUNHOS!!
-# def removerUtilizador():
-#     """
-#     Esta função remove o utilizador selecionado na listBox!!
-#     """
-#     nome_variavel_listbox.delete(nome_variavel_listbox.curselection())
-#     

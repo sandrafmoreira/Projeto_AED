@@ -117,7 +117,7 @@ class Sign_Up():
         self.conteudo = self.email + ';' + self.username + ';' + self.password #A variável conteudo guarda o username, o email, e a password inseridos para depois inserir no ficheiro 
 
 #       Abre o ficheiro 'utilizadores.txt' em modo append
-        f = open('..\\Projeto_AED\\files\\users.txt','a')
+        f = open('./files/users.txt','a')
         f.write(self.conteudo + '\n') #  Escreve o que está guardado na variável conteudo 
         f.close() # Fecha o ficheiro
 
@@ -157,7 +157,7 @@ class Login():
         self.password_entry = Entry(self.tl, width = 25, font = ('Roboto', 12), textvariable = self.password, show ='*').place( x = 400, y = 350)
 
 #       Botão para criar conta
-        self.login_button = Button(self.tl, text = 'Login', font = ('Roboto', 20), bg = 'lightblue', fg = 'white', command = lambda: self.login(self.window)).place(x = 580, y = 380)    
+        self.login_button = Button(self.tl, text = 'Login', font = ('Roboto', 20), bg = 'lightblue', fg = 'white', command = self.login).place(x = 580, y = 380)    
 
 #       Botão para voltar à página principal
         self.go_back_button = Button(self.tl, text = 'Go Back', font = ('Roboto', 20), bg = 'lightblue', fg = 'white', command = self.go_back_login).place(x = 310, y = 380)
@@ -171,7 +171,7 @@ class Login():
         return
 
 
-    def login(self, window):
+    def login(self):
         """
         Esta função junta as informações inseridas na frame de login \n
         Verifica se o username e password que o utilizador inseriu estão guardadas e corretas! \n
@@ -180,14 +180,15 @@ class Login():
 #       Vai buscar o que foi inserido nas entries do Username e Password
         self.username = self.username.get()
         self.password = self.password.get() 
+        admin = False
 
 #       Se o utilizador não tiver inserido algum ou nenhum dos campos, mostra uma messagebox com erro
         if self.username == '' or self.password == '':
             messagebox.showerror('Erro','You have to fill all the spaces!')
-            return #Termina-se a função
+            return
 
 #       Abre-se o ficheiro 'users.txt' em modo leitura
-        f = open('..\\Projeto_AED\\files\\users.txt','r')
+        f = open('./files/users.txt','r')
         self.conteudo = f.readlines() # A variável 'conteudo' vai buscar toda a informação escrita no ficheiro
         f.close() # Fechar o ficheiro
 
@@ -197,9 +198,10 @@ class Login():
             """
 #           ADMINS
             if self.username == 'sandra' and self.password == '123' or self.username =='nuno' and self.password == '456' or self.username == 'ken' and self.password == '789':
+                admin = True
                 messagebox.showinfo('Sucess!','Welcome admin! :)')
                 self.tl.destroy()
-                Main_App(self.window, self.username)
+                Main_App(self.window, self.username, admin)
                 return
 
             self.verificar_username = linhas[linhas.find(';') + 1:linhas.rfind(';')] #Esta variável vai buscar o username presente em cada linha na variável 'conteudo'
@@ -209,10 +211,9 @@ class Login():
             if self.username == self.verificar_username and self.password == self.verificar_pass:
                 messagebox.showinfo('Done!','You have sucessfully loged into the myPhotos! :)\n ')
                 self.tl.destroy()
-                Main_App(self.window, self.username)
+                Main_App(self.window, self.username, admin)
                 return
         
 #       Se depois de ter percorrido a variável 'conteudo' toda e não ter-se encontrado as informações da conta:
 #       Mostra-se uma messagebox de erro a informar o utilizador o ocorrido!
-        if self.verificar_username != self.username or self.verificar_pass != self.password:
-            messagebox.showerror('Error','The data you inserted in incorrect, try again!')
+        messagebox.showerror('Error','The data you inserted in incorrect, try again!')

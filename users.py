@@ -1,9 +1,15 @@
 from tkinter import *
 from tkinter import messagebox
 from PIL import Image, ImageTk
+<<<<<<< HEAD
 from homepage import * #Para importar a função homepage_window (função que cria a janela homepage) que está no ficheiro homepage.py
 from add_content import * 
 import os
+=======
+from homepage import Main_App #Para importar a função homepage_window (função que cria a janela homepage) que está no ficheiro homepage.py
+from pathlib import Path #pathlib is a module in the Python standard library that provides an object-oriented interface for working with filesystem paths. The Path class in pathlib represents a filesystem path and comes with various methods for file and directory manipulation.
+
+>>>>>>> 1e1b9d6d85c5b5b65485947acbd9103f474864f7
 #----------------------------------SIGN UP-----------------------------------------------------------
 class Sign_Up():
     def __init__(self, window):
@@ -93,8 +99,14 @@ class Sign_Up():
             messagebox.showerror('Error','Insert a valid email!')
             return #A função termina
     
+<<<<<<< HEAD
         #Abre-se o ficheiro onde estão presentes as informações dos utilizadores em modo leitura para verificar se o username que o utilizador inseriu já está presente no ficheiro
         f = open('..\\Projeto_AED\\files\\users.txt','r')
+=======
+#       Abre-se o ficheiro onde estão presentes as informações dos utilizadores em modo leitura para verificar se o username que o utilizador inseriu já está presente no ficheiro
+      
+        f = open(Path('')/'Projeto_AED'/'files'/'users.txt','r')
+>>>>>>> 1e1b9d6d85c5b5b65485947acbd9103f474864f7
         self.conteudo = f.readlines() # Lê todo o conteudo presente no ficheiro 'users.txt'
         f.close() # Fecha o ficheiro
 

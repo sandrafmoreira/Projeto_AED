@@ -1,7 +1,12 @@
 from tkinter import *
+<<<<<<< HEAD
 from tkinter import *
 from tkinter import messagebox
 from PIL import Image, ImageTk
+=======
+from pathlib import Path #pathlib is a module in the Python standard library that provides an object-oriented interface for working with filesystem paths. The Path class in pathlib represents a filesystem path and comes with various methods for file and directory manipulation.
+
+>>>>>>> 1e1b9d6d85c5b5b65485947acbd9103f474864f7
 
 class admins():
     '''
@@ -13,6 +18,7 @@ class admins():
         Construtor 
         '''
         self.tl_admin = tl_admin
+<<<<<<< HEAD
 
         # --- 1º Ação: Remover um user: --------------------------------------------------------------------------------------
         
@@ -78,6 +84,19 @@ class admins():
     
     # --- FUNÇÕES ---------------------
     def func_remove_account(self):
+=======
+        f = open  (Path('')/'Projeto_AED'/'files'/'users.txt', 'r')
+        lines = f.readlines()        
+        self.lbox_users= Listbox(self.tl_admin, height=10, selectmode='single', font=('Roboto', 14))
+        for line in lines:
+            self.lbox_users.insert(END, line) #END significa que cada line é inserida no fim do conteúdo da listbox
+            self.lbox_users.place(x = 30, y = 240)
+#       Criar um botãozinho para chamar a função de remover o user
+        self.btn_remove_user = Button(self.tl_admin, text='Trash account', bg= '#ccc', fg='white', border = '0', padx=5, pady=5, font=('Roboto', 14), command=self.remove_account)
+        self.btn_remove_user.place(x = 30, y = 480)
+#   Função para remover o user selecionado
+    def remove_account(self):
+>>>>>>> 1e1b9d6d85c5b5b65485947acbd9103f474864f7
         '''
         Permite ao admin remover uma conta ao carregar no botão
         '''

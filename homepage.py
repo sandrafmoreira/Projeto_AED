@@ -1,10 +1,9 @@
 from tkinter import *
-from tkinter import ttk
 from tkinter import messagebox
-from tkinter.ttk import Combobox
 from PIL import Image, ImageTk
 from admins import admins
 from add_content import Add_Post, Create_Album
+import os
 
 class Main_App:
     def __init__(self, window, username, admin):
@@ -193,6 +192,31 @@ class Main_App:
             self.add_album = Button(self.add_content_frame, text = 'Create an Album', bg = '#28942a', font = ('Roboto', 16),fg = 'white', bd = 0, width = 15, height = 2, command = lambda: self.create_album_frame(self.homepage))
 
 
+            #Label e Entry do nome do album
+            self.album_name_lbl = Label(self.homepage, text = 'Create an Album:', font = ('Roboto', 14), bg = 'lightgrey').place(x = 800, y = 340)
+            self.album_name= StringVar()
+            self.entry_album_name = Entry(self.homepage, width = 12, font = ('Roboto', 14), textvariable=self.album_name).place(x = 800, y = 380)
+
+            #Button para criar Album
+            self.btn_create_album= Button(self.homepage, width=10, height=1, text='Create', font=('Roboto, 12'), fg='#fff', bg='green', command=self.func_create_album)
+            self.btn_create_album.place(x=800,y=420)
+
+        def func_create_album(self):
+            '''
+            Criar novo album de fotografias para o user
+            '''
+            os.chdir('users_photoalbums')
+            os.chdir(self.username)
+            self.album_name_str = self.album_name.get()
+            if os.path.isdir(self.album_name_str):
+                messagebox.showerror('Error', 'You already have an album with that name.')
+                os.chdir('..\\..')
+            else:
+                os.mkdir(str(self.album_name_str))
+                messagebox.showinfo('Success', f'Album "{self.album_name_str}" created.')  
+                os.chdir('..\\..')  
+            return
+
         def show_add_content_frame(self):
             """
             Esta função faz com que o Frame para adicionar um post apareça \n
@@ -223,7 +247,7 @@ class Main_App:
             self.tl_create_album.resizable(0,0) #Para não se poder redimensionar a janela (para os widgets não saírem do sítio)
             self.tl_create_album.attributes('-topmost', 'true') #Isto faz com que o top level apareça por cima, pois ele por default aparece por baixo do top level da homepage
             self.tl_create_album.configure(bg = 'lightgrey')
-            Create_Album(self.tl_create_album)
+            Create_Album(self.tl_create_album, self.username)
 
         # #Icone para selecionar um tipo de grid (FONTE - SITE FLATICON)
         # icon5 = Image.open('..\\Projeto_AED\\images\\icons\\grid_icon1.png').resize((40,40))

@@ -7,7 +7,6 @@ teste2@esta_a_dar;achoquesim;check
 teste3@email;test3;333
 teste@classe;classe1;class
 teste2@classe;classe2;class
-teste3@classe;classe3;class
 teste4@classe;teste4;class
 user@123;user1;123
 teste5@123;teste5;54321

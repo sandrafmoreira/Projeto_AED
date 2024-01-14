@@ -3,6 +3,7 @@ from tkinter import ttk
 from tkinter import messagebox
 from PIL import Image, ImageTk
 from homepage import Main_App #Para importar a função homepage_window (função que cria a janela homepage) que está no ficheiro homepage.py
+from pathlib import Path #pathlib is a module in the Python standard library that provides an object-oriented interface for working with filesystem paths. The Path class in pathlib represents a filesystem path and comes with various methods for file and directory manipulation.
 
 #----------------------------------SIGN UP-----------------------------------------------------------
 class Sign_Up():
@@ -94,7 +95,8 @@ class Sign_Up():
             return #    A função termina
     
 #       Abre-se o ficheiro onde estão presentes as informações dos utilizadores em modo leitura para verificar se o username que o utilizador inseriu já está presente no ficheiro
-        f = open('..\\Projeto_AED\\files\\users.txt','r')
+      
+        f = open(Path('')/'Projeto_AED'/'files'/'users.txt','r')
         self.conteudo = f.readlines() # Lê todo o conteudo presente no ficheiro 'users.txt'
         f.close() # Fecha o ficheiro
 

@@ -5,6 +5,7 @@ from tkinter.ttk import Combobox
 from PIL import Image, ImageTk
 from admins import admins
 from add_content import Add_Post, Create_Album
+from pathlib import Path #pathlib is a module in the Python standard library that provides an object-oriented interface for working with filesystem paths. The Path class in pathlib represents a filesystem path and comes with various methods for file and directory manipulation.
 
 class Main_App:
     def __init__(self, window, username, admin):

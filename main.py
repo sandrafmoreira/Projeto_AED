@@ -3,6 +3,7 @@ from tkinter import ttk
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
+from pathlib import Path #pathlib is a module in the Python standard library that provides an object-oriented interface for working with filesystem paths. The Path class in pathlib represents a filesystem path and comes with various methods for file and directory manipulation.
 from users import * #Para importar as classes do ficheiro users.py para poder importar todas as suas funções
 
 # ------------PÁGINA INICIAL--------------------------
@@ -27,7 +28,7 @@ class App():
         self.login_button = Button(self.window, text = 'Login',bg = 'lightblue', fg = 'white', font = ('Roboto', 25), command = self.go_to_login).place(x = 575, y = 350)
 
 #       Botão com um icon para o utilizador sair da app
-        icon = Image.open('..\\Projeto_AED\\images\\icons\\logout_icon.png').resize((80,80))
+        icon = Image.open(Path('')/ 'Projeto_AED'/ 'images'/ 'icons' / 'logout_icon.png').resize((80,80)) # platfmor independet
         icon = ImageTk.PhotoImage(icon)
         self.leave_app_btn = Button(self.window, image = icon, bd = 0, bg='#333333', command = self.leave_app)
         self.leave_app_btn.image = icon

@@ -1,4 +1,5 @@
 from tkinter import *
+from pathlib import Path #pathlib is a module in the Python standard library that provides an object-oriented interface for working with filesystem paths. The Path class in pathlib represents a filesystem path and comes with various methods for file and directory manipulation.
 
 
 class admins():
@@ -14,7 +15,7 @@ class admins():
 #       LISTBOX DE TODOS OS USERS:
 #       Criar uma listbox para mostrar os users
         self.tl_admin = tl_admin
-        f = open('..\\Projeto_AED\\files\\users.txt', 'r')
+        f = open  (Path('')/'Projeto_AED'/'files'/'users.txt', 'r')
         lines = f.readlines()        
         self.lbox_users= Listbox(self.tl_admin, height=10, selectmode='single', font=('Roboto', 14))
         for line in lines:

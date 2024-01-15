@@ -88,15 +88,7 @@ class admins():
         for line in lines:
             self.lbox_users.insert(END, line) #END significa que cada line é inserida no fim do conteúdo da listbox
             self.lbox_users.place(x = 30, y = 240)
-#       Criar um botãozinho para chamar a função de remover o user
-        self.btn_remove_user = Button(self.tl_admin, text='Trash account', bg= '#ccc', fg='white', border = '0', padx=5, pady=5, font=('Roboto', 14), command=self.remove_account)
-        self.btn_remove_user.place(x = 30, y = 480)
-#   Função para remover o user selecionado
-    def remove_account(self):
-        '''
-        Permite ao admin remover uma conta ao carregar no botão
-        '''
-        self.lbox_users.delete(self.lbox_users.curselection())
+
    
     def func_save_account_deletion(self):
         """

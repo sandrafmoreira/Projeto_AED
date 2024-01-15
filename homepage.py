@@ -196,6 +196,7 @@ class Main_App:
             #Label e Entry do nome do album
             self.album_name_lbl = Label(self.homepage, text = 'Create an Album:', font = ('Roboto', 14), bg = 'lightgrey').place(x = 800, y = 340)
             self.album_name= StringVar()
+            
             self.entry_album_name = Entry(self.homepage, width = 12, font = ('Roboto', 14), textvariable=self.album_name).place(x = 800, y = 380)
 
             #Button para criar Album

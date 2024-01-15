@@ -19,6 +19,7 @@ class App():
 #       Mensagem de bem-vindo
         self.welcome_message_label = Label(self.window, text = 'myPhotos.', width=16, height=3, bg = '#fff', font = ('Roboto', 80), fg = 'lightblue').place(x = 0, y = 0)
 
+
 #       Botão para passar para o frame para fazer login!
         self.login_button = Button(self.window, text = 'Login',bg = '#ccc', width=17, height=3, fg = '#333', font = ('Roboto', 16), command = self.go_to_login).place(x = 65, y = 435)
 

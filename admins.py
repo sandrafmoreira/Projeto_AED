@@ -1,12 +1,10 @@
 from tkinter import *
-<<<<<<< HEAD
 from tkinter import *
 from tkinter import messagebox
 from PIL import Image, ImageTk
-=======
+
 from pathlib import Path #pathlib is a module in the Python standard library that provides an object-oriented interface for working with filesystem paths. The Path class in pathlib represents a filesystem path and comes with various methods for file and directory manipulation.
 
->>>>>>> 1e1b9d6d85c5b5b65485947acbd9103f474864f7
 
 class admins():
     '''
@@ -18,7 +16,6 @@ class admins():
         Construtor 
         '''
         self.tl_admin = tl_admin
-<<<<<<< HEAD
 
         # --- 1º Ação: Remover um user: --------------------------------------------------------------------------------------
         
@@ -84,7 +81,7 @@ class admins():
     
     # --- FUNÇÕES ---------------------
     def func_remove_account(self):
-=======
+
         f = open  (Path('')/'Projeto_AED'/'files'/'users.txt', 'r')
         lines = f.readlines()        
         self.lbox_users= Listbox(self.tl_admin, height=10, selectmode='single', font=('Roboto', 14))
@@ -96,7 +93,6 @@ class admins():
         self.btn_remove_user.place(x = 30, y = 480)
 #   Função para remover o user selecionado
     def remove_account(self):
->>>>>>> 1e1b9d6d85c5b5b65485947acbd9103f474864f7
         '''
         Permite ao admin remover uma conta ao carregar no botão
         '''

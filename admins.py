@@ -1,10 +1,3 @@
-from tkinter import *
-from tkinter import *
-from tkinter import messagebox
-from PIL import Image, ImageTk
-
-from pathlib import Path #pathlib is a module in the Python standard library that provides an object-oriented interface for working with filesystem paths. The Path class in pathlib represents a filesystem path and comes with various methods for file and directory manipulation.
-
 
 class admins():
     '''
@@ -128,4 +121,11 @@ class admins():
              
 
 
+
+from tkinter import *
+from tkinter import *
+from tkinter import messagebox
+from PIL import Image, ImageTk
+
+from pathlib import Path #pathlib is a module in the Python standard library that provides an object-oriented interface for working with filesystem paths. The Path class in pathlib represents a filesystem path and comes with various methods for file and directory manipulation.
 

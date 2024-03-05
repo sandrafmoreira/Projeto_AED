@@ -1,11 +1,3 @@
-from tkinter import *
-from tkinter import messagebox
-from PIL import Image, ImageTk
-from homepage import * #Para importar a função homepage_window (função que cria a janela homepage) que está no ficheiro homepage.py
-from add_content import * 
-import os
-from homepage import Main_App #Para importar a função homepage_window (função que cria a janela homepage) que está no ficheiro homepage.py
-from pathlib import Path #pathlib is a module in the Python standard library that provides an object-oriented interface for working with filesystem paths. The Path class in pathlib represents a filesystem path and comes with various methods for file and directory manipulation.
 
 
 #----------------------------------SIGN UP-----------------------------------------------------------
@@ -228,3 +220,12 @@ class Login():
 #       Se depois de ter percorrido a variável 'conteudo' toda e não ter-se encontrado as informações da conta:
 #       Mostra-se uma messagebox de erro a informar o utilizador o ocorrido!
         messagebox.showerror('Error','The data you inserted in incorrect, try again!')
+
+from tkinter import *
+from tkinter import messagebox
+from PIL import Image, ImageTk
+from homepage import * #Para importar a função homepage_window (função que cria a janela homepage) que está no ficheiro homepage.py
+from add_content import * 
+import os
+from homepage import Main_App #Para importar a função homepage_window (função que cria a janela homepage) que está no ficheiro homepage.py
+from pathlib import Path #pathlib is a module in the Python standard library that provides an object-oriented interface for working with filesystem paths. The Path class in pathlib represents a filesystem path and comes with various methods for file and directory manipulation.
